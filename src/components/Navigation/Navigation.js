@@ -1,7 +1,7 @@
 import React from "react";
-import Logo from '../Logo/Logo'
-import '../Logo/logo.css'
-const Navigation = () => {
+import Logo from '../Logo/Logo';
+
+const Navigation = ({onRouteChange, signin}) => {
 
     return(
     <nav style={{}}>  
@@ -10,8 +10,15 @@ const Navigation = () => {
                 <Logo />
             </div>
             <div className='f3 link dim black underline pa3 pointer ' style={{display: 'flex', justifyContent: 'flex-end'} }>
-                <p className='ma2'>Sign out</p>
-            </div>
+                {signin==='false' ? (
+                    <>             
+                    <p onClick={ () => onRouteChange('signin')} className='ma2'>Sign In</p>
+                    <p onClick={ () => onRouteChange('register')} className='ma2'>Register</p>
+                    </>
+                ): 
+                <p onClick={ () => onRouteChange('signin')} className='ma2'>Sign Out</p>
+                }
+            </div>       
         </div>  
     </nav>
     )

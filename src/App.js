@@ -1,23 +1,23 @@
 import './App.css';
 import Navigation from './components/Navigation/Navigation'
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
-import Rank from './components/Rank/Rank'
 import Particles from './components/Particles/Particles'
-import FaceRecognition from './components/FaceRecognition/FaceRecognition'
-import { useState, useEffect } from 'react';
-
-import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner';
+import ImageCard from './components/ImageCard/ImageCard';
+import { useState} from 'react';
+// import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner';
 import { useHttpClient } from './hooks/http-hook';
+import Signin from './components/Signin/Signin';
+import Register from './components/Register/Register';
 
 function App() {
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
-const [loadedResult, setLoadedResult] = useState();
-  
+  const [loadedResult, setLoadedResult] = useState();
+  const [route , setRoute] = useState('signin');
+  const [signin , setSignin] = useState('false');
   const [input, setInput] = useState('');
   const [url, setUrl] = useState('');
 
   const onInputChange = (event) => {
-    console.log(event.target.value)
     setInput(event.target.value)
   }
 
@@ -36,20 +36,27 @@ const [loadedResult, setLoadedResult] = useState();
     } catch (err) {}
   }
 
-  useEffect(() => {
-    if(loadedResult){
-      console.log(loadedResult.results[0])
+  const onRouteChange = (route) => {
+    setRoute(route); 
+    if (route === 'home') {
+      setSignin('true')
+    } else {
+      setSignin('false')
     }
-   
-  }, [loadedResult]);
-
+  }
 
   return (
     <div className="App">
-      <Navigation />
-      <Rank result={loadedResult}/>
-      <ImageLinkForm onInputChange={onInputChange} onButtonSubmit={onButtonSubmit}/>
-      <FaceRecognition url={url}/>
+      <Navigation onRouteChange={onRouteChange} signin={signin}/>
+      
+      {route === 'signin' ?
+        <Signin onRouteChange={onRouteChange}/> : route === 'register'  ?
+        <Register onRouteChange={onRouteChange}/> :
+        <>
+        <ImageLinkForm onInputChange={onInputChange} onButtonSubmit={onButtonSubmit} />   
+        <ImageCard url={url} result={loadedResult} /> 
+        </>        
+      }
       <Particles id="tsparticles" />
     </div>
   );
