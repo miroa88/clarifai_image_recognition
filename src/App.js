@@ -23,17 +23,19 @@ function App() {
 
   const onButtonSubmit = async (event) => {
     event.preventDefault();
-    setUrl(input)
-    try {
-      setLoadedResult(await sendRequest(
-        'http://localhost:8080/predict',
-        'POST',
-        JSON.stringify({
-          imageUrl: input,
-        }),
-        { 'Content-Type': 'application/json' }
-      ));
-    } catch (err) {}
+    if (input) {
+      setUrl(input)
+      try {
+        setLoadedResult(await sendRequest(
+          'http://localhost:8080/predict',
+          'POST',
+          JSON.stringify({
+            imageUrl: input,
+          }),
+          { 'Content-Type': 'application/json' }
+        ));
+      } catch (err) {}
+    }
   }
 
   const onRouteChange = (route) => {
