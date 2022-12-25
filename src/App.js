@@ -1,10 +1,9 @@
 import './App.css';
-import Navigation from './components/Navigation/Navigation'
+import Navigation from './components/Navigation/Navigation';
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
-import Particles from './components/Particles/Particles'
+import Particles from './components/Particles/Particles';
 import ImageCard from './components/ImageCard/ImageCard';
 import { useState} from 'react';
-// import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner';
 import { useHttpClient } from './hooks/http-hook';
 import Signin from './components/Signin/Signin';
 import Register from './components/Register/Register';
