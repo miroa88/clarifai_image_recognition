@@ -1,7 +1,7 @@
 import React from "react";
 import Logo from '../Logo/Logo';
 
-const Navigation = ({onRouteChange, signin}) => {
+const Navigation = ({onRouteChange, signin, resetAllStates}) => {
 
     return(
     <nav style={{}}>  
@@ -16,7 +16,7 @@ const Navigation = ({onRouteChange, signin}) => {
                     <p onClick={ () => onRouteChange('register')} className='ma2'>Register</p>
                     </>
                 ): 
-                <p onClick={ () => onRouteChange('signin')} className='ma2'>Sign Out</p>
+                <p onClick={ resetAllStates } className='ma2'>Sign Out</p>
                 }
             </div>       
         </div>  
