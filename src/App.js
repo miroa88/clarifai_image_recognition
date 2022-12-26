@@ -47,7 +47,7 @@ function App() {
       setUrl(input)
       try {
         let res = await sendRequest(
-          'http://localhost:8080/predict',
+          'https://brain-node-deploy.herokuapp.com/predict',
           'POST',
           JSON.stringify({
             imageUrl: input,
@@ -56,7 +56,7 @@ function App() {
         );
         if (res) {
           setLoadedResult(res);
-          fetch("http://localhost:8080/image", {
+          fetch("https://brain-node-deploy.herokuapp.com/image", {
             method: 'PUT', 
             headers: {
                 'Content-Type': 'application/json',

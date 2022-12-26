@@ -21,7 +21,7 @@ const Register = ({ onRouteChange, loadUser }) => {
 
     const onSubmitRegister = (e) => {
         e.preventDefault();
-        fetch('http://localhost:8080/register', {
+        fetch('https://brain-node-deploy.herokuapp.com/register', {
             method: 'POST', 
             headers: {
                 'Content-Type': 'application/json',
